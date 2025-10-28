@@ -1,0 +1,80 @@
+
+<section class="portfolio-section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Explore my latest work and side projects</p>
+    
+    <div class="projects-grid">
+      @for (project of projects; track project.id; let i = $index) {
+        <div 
+          class="project-card" 
+          [class.animate]="isProjectsVisible"
+          [style.animation-delay]="(i * 0.1) + 's'"
+          (click)="openProjectModal(project)">
+          
+          <div class="project-image">
+            <img [src]="project.image" [alt]="project.title">
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <span class="project-category">{{ project.category }}</span>
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-subtitle">{{ project.subtitle }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Project Modal -->
+@if (showModal && selectedProject) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeModal()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      
+      <div class="modal-header">
+        <img [src]="selectedProject.image" [alt]="selectedProject.title" class="modal-image">
+        <div class="modal-header-text">
+          <span class="modal-category">{{ selectedProject.category }}</span>
+          <h2 class="modal-title">{{ selectedProject.title }}</h2>
+          <p class="modal-subtitle">{{ selectedProject.subtitle }}</p>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3 class="modal-section-title">About Project</h3>
+          <p class="modal-description">{{ selectedProject.description }}</p>
+        </div>
+        
+        <div class="modal-section">
+          <h3 class="modal-section-title">Technologies Used</h3>
+          <div class="tech-tags">
+            @for (tech of selectedProject.technologies; track tech) {
+              <span class="tech-tag">{{ tech }}</span>
+            }
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          @if (selectedProject.demoLink) {
+            <a [href]="selectedProject.demoLink" target="_blank" class="btn-primary">
+              <i class="bi bi-box-arrow-up-right"></i> View Demo
+            </a>
+          }
+          @if (selectedProject.githubLink) {
+            <a [href]="selectedProject.githubLink" target="_blank" class="btn-secondary">
+              <i class="bi bi-github"></i> View Code
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

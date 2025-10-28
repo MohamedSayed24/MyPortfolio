@@ -1,0 +1,51 @@
+<section class="hero d-flex align-items-center text-center">
+  <div class="container">
+
+    <div class="avatar-container">
+      <img src="./me2.jpg" class="avatar" alt="Avatar">
+    </div>
+
+    <p class="greeting-bubble" style="color: white;">
+      Hello! I'm <span class="name-highlight">Mohamed El Sayed</span><br> 
+      <span class="greeting-bubble">A Software Engineer Who</span>
+    </p>
+
+    <h1 class="motto">
+      Code with purpose
+      Build with <span class="highlight">precision</span>
+    </h1>
+
+    <p class="subtitle">
+      Engineering high-performance .NET solutions that users enjoy and businesses trust.
+    </p>
+
+    <h2 class="main-role">
+      I'm a <span class="fw-bold">Full Stack .NET Developer</span><span class="cursor">|</span>
+    </h2>
+
+    <p class="current-role-details d-flex justify-content-center align-items-center gap-2">
+      Currently training at 
+      <img src="./iti.jpeg" alt="ITI Logo" class="iti-logo">
+      <span class="company-link">Information Technology Institute (ITI)</span>
+    </p>
+
+  </div>
+</section>
+
+<section class="skills-section">
+  <div class="container">
+    <h2 class="section-title">Programming Skills & Expertise</h2>
+    
+    <div class="skills-grid">
+      @for (skill of skills; track skill.title; let i = $index) {
+        <div 
+          class="skill-card" 
+          [class.animate]="isSkillsVisible"
+          [style.animation-delay]="(i * 0.1) + 's'">
+          <h3 class="skill-title">{{ skill.title }}</h3>
+          <p class="skill-description" [innerHTML]="skill.description"></p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

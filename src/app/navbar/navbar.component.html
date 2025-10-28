@@ -1,0 +1,23 @@
+<nav 
+  class="navbar navbar-expand-lg navbar-dark" 
+  style="background-color: #1a0b2e;"
+  [class.scrolled]="scrolled" >  <div class="container-fluid px-4">
+    <a routerLink="/home" class="navbar-brand py-0">
+      <div class="logo-box">Σ</div>
+    </a>
+
+    <ul class="navbar-nav mx-auto flex-row align-items-center gap-4">
+      @for (link of navLinks; track link.path) {
+        <li class="nav-item">
+          <a
+            [routerLink]="link.path" 
+            
+            routerLinkActive="active-link"
+            class="nav-link">
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>
